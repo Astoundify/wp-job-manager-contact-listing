@@ -24,6 +24,7 @@ abstract class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Jo
 	 */
 	abstract protected function setup_actions();
 	abstract protected function get_forms();
+	abstract protected function output_form( $form );
 	abstract protected function notification_email();
 
 	/**
@@ -104,17 +105,7 @@ abstract class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Jo
 			$form = $this->resumes_form_id;
 		}
 
-		switch ( $plugin ) {
-			case 'gravityforms' :
-				echo do_shortcode( sprintf( '[gravityform id="%s" %s]', $form, apply_filters( 'job_manager_contact_listing_gravityforms_apply_form_args', 'title="false" description="false" ajax="true"' ) ) );
-			break;
-			case 'ninjaforms' :
-				echo do_shortcode( sprintf( '[ninja_forms_display_form id="%s" %s]', $form, apply_filters( 'job_manager_contact_listing_ninjaforms_apply_form_args', '' ) ) );
-			break;
-			case 'cf7' :
-				echo do_shortcode( sprintf( '[contact-form-7 id="%s" %s]', $form, apply_filters( 'job_manager_contact_listing_cf7_apply_form_args', '' ) ) );
-			break;
-		}
+		do_action( 'job_manager_contact_listing_form_' . $plugin, $form );
 	}
 
 }

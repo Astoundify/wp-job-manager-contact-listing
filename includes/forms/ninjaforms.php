@@ -27,7 +27,21 @@ class Astoundify_Job_Manager_Contact_Listing_Form_NinjaForms extends Astoundify_
 	 * @return void
 	 */
 	public function setup_actions() {
+		add_action( 'job_manager_contact_listing_form_ninjaforms', array( $this, 'output_form' ) );
 		add_action( 'ninja_forms_email_admin', array( $this, 'notification_email' ) );
+	}
+
+	/**
+	 * Output the shortcode.
+	 *
+	 * @since WP Job Manager - Contact Listing 1.0.0
+	 *
+	 * @return void
+	 */
+	public function output_form( $form ) {
+		$args = apply_filters( 'job_manager_contact_listing_ninjaforms_apply_form_args', '' );
+
+		echo do_shortcode( sprintf( '[ninja_forms_display_form id="%s" %s]', $form, $args ) );
 	}
 
 	/**

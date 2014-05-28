@@ -164,7 +164,7 @@ class Astoundify_Job_Manager_Contact_Listing {
 			)
 		);
 
-		return apply_filters( 'job_manager_contact_listing_support_plugins', $supported );
+		return apply_filters( 'job_manager_contact_listing_supported_plugins', $supported );
 	}
 
 }

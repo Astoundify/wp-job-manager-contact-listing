@@ -20,10 +20,25 @@ class Astoundify_Job_Manager_Contact_Listing_Form_GravityForms extends Astoundif
 	}
 
 	public function setup_actions() {
+		add_action( 'job_manager_contact_listing_form_gravityforms', array( $this, 'output_form' ) );
+
 		add_filter( 'gform_field_value_application_email', array( $this, 'application_email' ) );
 
 		add_filter( 'gform_notification_' . $this->jobs_form_id, array( $this, 'notification_email' ), 10, 3 );
 		add_filter( 'gform_notification_' . $this->resumes_form_id, array( $this, 'notification_email' ), 10, 3 );
+	}
+
+	/**
+	 * Output the shortcode.
+	 *
+	 * @since WP Job Manager - Contact Listing 1.0.0
+	 *
+	 * @return void
+	 */
+	public function output_form( $form ) {
+		$args = apply_filters( 'job_manager_contact_listing_gravityforms_apply_form_args', 'title="false" description="false" ajax="true"' );
+
+		echo do_shortcode( sprintf( '[gravityform id="%s" %s]', $form, $args ) );
 	}
 
 	/**

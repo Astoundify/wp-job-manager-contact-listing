@@ -28,6 +28,20 @@ class Astoundify_Job_Manager_Contact_Listing_Form_CF7 extends Astoundify_Job_Man
 	 */
 	public function setup_actions() {
 		add_filter( 'wpcf7_mail_components', array( $this, 'notification_email' ), 10, 2 );
+		add_action( 'job_manager_contact_listing_form_cf7', array( $this, 'output_form' ) );
+	}
+
+	/**
+	 * Output the shortcode.
+	 *
+	 * @since WP Job Manager - Contact Listing 1.0.0
+	 *
+	 * @return void
+	 */
+	public function output_form( $form ) {
+		$args = apply_filters( 'job_manager_contact_listing_cf7_apply_form_args', '' );
+
+		echo do_shortcode( sprintf( '[contact-form-7 id="%s" %s]', $form, $args ) );
 	}
 
 	/**
