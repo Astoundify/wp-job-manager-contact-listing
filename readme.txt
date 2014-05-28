@@ -11,11 +11,17 @@ Stable Tag: 1.0.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Allow themes using the WP Job Manager plugin to contact listings via their favorite form builder plugin.
+Allow sites using the WP Job Manager plugin to contact listings via their favorite form builder plugin.
 
 == Description ==
 
-Themes using the [WP Job Manager](http://wordpress.org/plugins/wp-job-manager/) plugin can build a form using any of the supported plugins and allow visitors to email the connected application email (or resume author) directly.
+Sites using the [WP Job Manager](http://wordpress.org/plugins/wp-job-manager/) plugin can use any of the supported plugins and allow visitors to contact the connected application email (or resume author) directly.
+
+**Supported Form Plugins**
+
+* Gravity Forms
+* Ninja Forms
+* Contact Form 7
 
 = Where can I use this? =
 
