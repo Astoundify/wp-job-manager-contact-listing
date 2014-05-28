@@ -118,6 +118,10 @@ class Astoundify_Job_Manager_Contact_Listing {
 	 * @return void
 	 */
 	private function init_plugin() {
+		if ( ! isset( self::$active_plugin ) ) {
+			return;
+		}
+
 		$plugin = $this->supported_plugins()[ self::$active_plugin ];
 
 		$plugin_file = sprintf( $this->plugin_dir . 'includes/forms/%s.php', self::$active_plugin );

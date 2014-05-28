@@ -1,6 +1,13 @@
 <?php
-
-class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Job_Manager_Contact_Listing {
+/**
+ * Base form class. Grab the form values, add settings, and
+ * output the correct form.
+ *
+ * @since WP Job Manager - Contact Listing 1.0.0
+ *
+ * @return void
+ */
+abstract class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Job_Manager_Contact_Listing {
 
 	/**
 	 * @var $jobs_form_id
@@ -11,6 +18,13 @@ class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Job_Manager
 	 * @var $resumes_form_id
 	 */
 	public $resumes_form_id;
+
+	/**
+	 * Form-specific methods
+	 */
+	abstract protected function setup_actions();
+	abstract protected function get_forms();
+	abstract protected function notification_email();
 
 	/**
 	 * Set the form values, remove the default application template
@@ -28,14 +42,18 @@ class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Job_Manager
 
 		add_filter( 'job_manager_settings', array( $this, 'job_manager_settings' ) );
 
-		if ( ! parent::$active_plugin ) {
+		if ( ! parent::$active_plugin || ! ( $this->jobs_form_id || $this->resumes_form_id ) ) {
 			return;
 		}
 
+		$this->setup_actions();
+
+		// Shim for Jobify until 1.8.1
+		add_filter( 'jobify_apply_via_form', '__return_false' );
+
+		// Output the shortcode
 		remove_action( 'job_manager_application_details_email', array( $job_manager->post_types, 'application_details_email' ) );
 		add_action( 'job_manager_application_details_email', array( $this, 'job_manager_application_details_email' ) );
-
-		$this->setup_actions();
 	}
 
 	/**
