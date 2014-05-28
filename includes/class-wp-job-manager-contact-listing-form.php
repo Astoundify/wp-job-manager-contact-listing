@@ -12,6 +12,14 @@ class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Job_Manager
 	 */
 	public $resumes_form_id;
 
+	/**
+	 * Set the form values, remove the default application template
+	 * and attach our own. Call and of the children's special actions.
+	 *
+	 * @since WP Job Manager - Contact Listing 1.0.0
+	 *
+	 * @return void
+	 */
 	public function __construct() {
 		global $job_manager;
 
@@ -30,6 +38,13 @@ class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Job_Manager
 		$this->setup_actions();
 	}
 
+	/**
+	 * Add settings fields to select the appropriate form for each listing type.
+	 *
+	 * @since WP Job Manager - Contact Listing 1.0.0
+	 *
+	 * @return void
+	 */
 	public function job_manager_settings($settings) {
 		$settings[ 'job_listings' ][1][] = array(
 			'name'    => 'job_manager_job_apply',
@@ -54,6 +69,13 @@ class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Job_Manager
 		return $settings;
 	}
 
+	/**
+	 * Output the necessary form shortocde.
+	 *
+	 * @since WP Job Manager - Contact Listing 1.0.0
+	 *
+	 * @return void
+	 */
 	public function job_manager_application_details_email( $apply ) {
 		$plugin = parent::$active_plugin;
 		$post   = get_post();
