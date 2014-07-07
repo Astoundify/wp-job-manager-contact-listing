@@ -56,10 +56,6 @@ class Astoundify_Job_Manager_Contact_Listing_Form_NinjaForms extends Astoundify_
 
 		$form_id = $ninja_forms_processing->get_form_ID();
 
-		if ( $form_id !== absint( $this->jobs_form_id ) && $form_id !== absint( $this->resumes_form_id ) ) {
-			return;
-		}
-
 		$object = $field_id = null;
 		$fields = $ninja_forms_processing;
 
@@ -73,7 +69,11 @@ class Astoundify_Job_Manager_Contact_Listing_Form_NinjaForms extends Astoundify_
 
 		$object = get_post( $ninja_forms_processing->get_field_value( $field_id ) );
 
-		$this->_proper_ninja_email = $form_id == $this->jobs_form_id ? $object->_application : $object->_candidate_email;
+		if ( ! array_search( $form_id, $this->forms[ $object->post_type ] ) ) {
+			return;
+		}
+
+		$this->_proper_ninja_email = $object->_application ? $object->_application : $object->_candidate_email;
 
 		add_filter( 'wp_mail', array( $this, 'proper_email' ) );
 	}

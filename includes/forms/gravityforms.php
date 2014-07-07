@@ -21,11 +21,7 @@ class Astoundify_Job_Manager_Contact_Listing_Form_GravityForms extends Astoundif
 
 	public function setup_actions() {
 		add_action( 'job_manager_contact_listing_form_gravityforms', array( $this, 'output_form' ) );
-
-		add_filter( 'gform_field_value_application_email', array( $this, 'application_email' ) );
-
-		add_filter( 'gform_notification_' . $this->jobs_form_id, array( $this, 'notification_email' ), 10, 3 );
-		add_filter( 'gform_notification_' . $this->resumes_form_id, array( $this, 'notification_email' ), 10, 3 );
+		add_filter( 'gform_notification', array( $this, 'notification_email' ), 10, 3 );
 	}
 
 	/**
@@ -42,23 +38,6 @@ class Astoundify_Job_Manager_Contact_Listing_Form_GravityForms extends Astoundif
 	}
 
 	/**
-	 * Dynamically populate the application email field.
-	 *
-	 * @since WP Job Manager - Contact Listing 1.0.0
-	 *
-	 * @return string The email to notify.
-	 */
-	public function application_email() {
-		global $post;
-
-		if ( $post->_application ) {
-			return $post->_application;
-		} else {
-			return $post->_candidate_email;
-		}
-	}
-
-	/**
 	 * Set the notification email when sending an email.
 	 *
 	 * @since WP Job Manager - Contact Listing 1.0.0
@@ -68,20 +47,24 @@ class Astoundify_Job_Manager_Contact_Listing_Form_GravityForms extends Astoundif
 	public function notification_email( $notification, $form, $entry ) {
 		$notification[ 'toType' ] = 'email';
 
-		$field  = null;
-		$fields = $form[ 'fields' ];
-
-		if ( 'dummy@dummy.com' != $notification[ 'to' ] ) {
-			return $notification;
-		}
+		$listing = false;
+		$fields  = $form[ 'fields' ];
 
 		foreach ( $fields as $check ) {
-			if ( $check[ 'inputName' ] == 'application_email' ) {
-				$field = $check[ 'id' ];
+			if ( $check[ 'inputName' ] == 'Listing ID' ) {
+				$listing = $check[ 'id' ];
 			}
 		}
 
-		$notification[ 'to' ] = $entry[ $field ];
+		$object = get_post( $listing );
+
+		if ( ! array_search( $form[ 'id' ], $this->forms[ $object->post_type ] ) ) {
+			return;
+		}
+
+		$to = $object->_application ? $object->_application : $object->_candidate_email;
+
+		$notification[ 'to' ] = $to;
 
 		return $notification;
 	}

@@ -12,12 +12,7 @@ abstract class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Jo
 	/**
 	 * @var $jobs_form_id
 	 */
-	public $jobs_form_id;
-
-	/**
-	 * @var $resumes_form_id
-	 */
-	public $resumes_form_id;
+	public $forms;
 
 	/**
 	 * Form-specific methods
@@ -25,7 +20,7 @@ abstract class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Jo
 	abstract protected function setup_actions();
 	abstract protected function get_forms();
 	abstract protected function output_form( $form );
-	abstract protected function notification_email();
+	abstract protected function notification_email($arg1, $arg2, $arg3);
 
 	/**
 	 * Set the form values, remove the default application template
@@ -38,12 +33,19 @@ abstract class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Jo
 	public function __construct() {
 		global $job_manager;
 
-		$this->jobs_form_id    = get_option( 'job_manager_job_apply', false );
-		$this->resumes_form_id = get_option( 'job_manager_resume_apply', false );
+		$this->forms = apply_filters( 'job_manager_contact_listing_forms', array(
+			'job_listing' => array(
+				'contact' => get_option( 'job_manager_job_apply', false )
+			),
+			'resume' => array(
+				'contact' => get_option( 'job_manager_resume_apply', false )
+			)
+		) );
 
 		add_filter( 'job_manager_settings', array( $this, 'job_manager_settings' ) );
+		add_filter( 'resume_manager_settings', array( $this, 'resume_manager_settings' ) );
 
-		if ( ! parent::$active_plugin || ! ( $this->jobs_form_id || $this->resumes_form_id ) ) {
+		if ( ! parent::$active_plugin ) {
 			return;
 		}
 
@@ -65,21 +67,48 @@ abstract class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Jo
 	 * @return void
 	 */
 	public function job_manager_settings($settings) {
-		$settings[ 'job_listings' ][1][] = array(
-			'name'    => 'job_manager_job_apply',
-			'std'     => null,
-			'label'   => __( 'Jobs Contact Form', 'wp-job-manager-gf-apply' ),
-			'desc'    => __( 'Choose a form to contact the listing author.', 'wp-job-manager-contact-listing' ),
-			'type'    => 'select',
-			'options' => $this->get_forms()
+		$args = array(
+			'post_type' => 'job_listing',
+			'key' => 'job_listings',
+			'option' => 'job_manager'
 		);
 
-		if ( class_exists( 'WP_Resume_Manager' ) ) {
-			$settings[ 'job_listings' ][1][] = array(
-				'name'    => 'job_manager_resume_apply',
+		$settings = $this->add_settings( $args, $settings );
+
+		return $settings;
+	}
+
+	/**
+	 * Add settings fields to select the appropriate form for each listing type.
+	 *
+	 * @since WP Job Manager - Contact Listing 1.0.0
+	 *
+	 * @return void
+	 */
+	public function resume_manager_settings($settings) {
+		$args = array(
+			'post_type' => 'resume',
+			'key' => 'resume_listings',
+			'option' => 'resume_manager'
+		);
+
+		$settings = $this->add_settings( $args, $settings );
+
+		return $settings;
+	}
+
+	private function add_settings( $args, $settings ) {
+		$post_type = $args[ 'post_type' ];
+		$forms = $this->forms[ $post_type ];
+
+		$p_type_obj = get_post_type_object( $post_type );
+
+		foreach ( $forms as $key => $value ) {
+			$settings[ $args[ 'key' ] ][1][] = array(
+				'name'    => sprintf( '%s_form_%s', $args[ 'option' ], $key ),
 				'std'     => null,
-				'label'   => __( 'Resumes Contact Form', 'wp-job-manager-gf-apply' ),
-				'desc'    => __( 'Choose a form to contact the listing author.', 'wp-job-manager-gf-apply' ),
+				'label'   => sprintf( __( '%s %s Form', 'wp-job-manager-contact-listing' ), $p_type_obj->labels->name, ucfirst( $key ) ),
+				'desc'    => '',
 				'type'    => 'select',
 				'options' => $this->get_forms()
 			);
@@ -99,11 +128,7 @@ abstract class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Jo
 		$plugin = parent::$active_plugin;
 		$post   = get_post();
 
-		if ( 'resume' == $post->post_type ) {
-			$form = $this->jobs_form_id;
-		} else {
-			$form = $this->resumes_form_id;
-		}
+		$form = $this->forms[ $post->post_type ];
 
 		do_action( 'job_manager_contact_listing_form_' . $plugin, $form );
 	}

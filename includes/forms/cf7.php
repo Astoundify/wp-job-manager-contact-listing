@@ -52,23 +52,19 @@ class Astoundify_Job_Manager_Contact_Listing_Form_CF7 extends Astoundify_Job_Man
 	 * @return string The email to notify.
 	 */
 	public function notification_email( $components, $cf7 ) {
-		if ( ! in_array( $cf7->id, array( $this->jobs_form_id, $this->resumes_form_id ) ) ) {
-			return $components;
-		}
-
 		$unit = $cf7->posted_data[ '_wpcf7_unit_tag' ];
 
 		if ( ! preg_match( '/^wpcf7-f(\d+)-p(\d+)-o(\d+)$/', $unit, $matches ) )
 			return $components;
 
 		$post_id = (int) $matches[2];
-		$listing = get_post( $post_id );
+		$object = get_post( $post_id );
 
-		if ( 'job_listing' == $listing->post_type ) {
-			$recipient = $listing->_application;
-		} elseif( 'resume' == $listing->post_type ) {
-			$recipient = $listing->_candidate_email;
+		if ( ! array_search( $cf7->id, $this->forms[ $object->post_type ] ) ) {
+			return $components;
 		}
+
+		$recipient = $object->_application ? $object->_application : $object->_candidate_email;
 
 		$components[ 'recipient' ] = $recipient;
 
