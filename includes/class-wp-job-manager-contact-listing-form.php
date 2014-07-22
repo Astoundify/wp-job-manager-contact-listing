@@ -128,6 +128,10 @@ abstract class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Jo
 		$plugin = parent::$active_plugin;
 		$post   = get_post();
 
+		if ( ! is_a( 'WP_Post', $post ) ) {
+			return;
+		}
+
 		$form = $this->forms[ $post->post_type ][ 'contact' ];
 
 		do_action( 'job_manager_contact_listing_form_' . $plugin, $form );
