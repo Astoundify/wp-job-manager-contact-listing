@@ -35,10 +35,10 @@ abstract class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Jo
 
 		$this->forms = apply_filters( 'job_manager_contact_listing_forms', array(
 			'job_listing' => array(
-				'contact' => get_option( 'job_manager_job_apply', false )
+				'contact' => get_option( 'job_manager_form_contact', false )
 			),
 			'resume' => array(
-				'contact' => get_option( 'job_manager_resume_apply', false )
+				'contact' => get_option( 'resume_manager_form_contact', false )
 			)
 		) );
 
@@ -50,9 +50,6 @@ abstract class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Jo
 		}
 
 		$this->setup_actions();
-
-		// Shim for Jobify until 1.8.1
-		add_filter( 'jobify_apply_via_form', '__return_false' );
 
 		// Output the shortcode
 		remove_action( 'job_manager_application_details_email', array( $job_manager->post_types, 'application_details_email' ) );
