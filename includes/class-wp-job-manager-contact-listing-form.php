@@ -54,6 +54,13 @@ abstract class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Jo
 		// Output the shortcode
 		remove_action( 'job_manager_application_details_email', array( $job_manager->post_types, 'application_details_email' ) );
 		add_action( 'job_manager_application_details_email', array( $this, 'job_manager_application_details_email' ) );
+
+		if ( class_exists( 'WP_Resume_Manager' ) ) {
+			global $resume_manager;
+
+			remove_action( 'resume_manager_contact_details', array( $resume_manager->post_types, 'contact_details_email' ) );
+			add_action( 'resume_manager_contact_details', array( $this, 'job_manager_application_details_email' ) );
+		}
 	}
 
 	/**
