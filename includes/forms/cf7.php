@@ -27,7 +27,7 @@ class Astoundify_Job_Manager_Contact_Listing_Form_CF7 extends Astoundify_Job_Man
 	 * @return void
 	 */
 	public function setup_actions() {
-		add_filter( 'wpcf7_mail_components', array( $this, 'notification_email' ), 10, 2 );
+		add_filter( 'wpcf7_mail_components', array( $this, 'notification_email' ), 10, 3 );
 		add_action( 'job_manager_contact_listing_form_cf7', array( $this, 'output_form' ) );
 	}
 
