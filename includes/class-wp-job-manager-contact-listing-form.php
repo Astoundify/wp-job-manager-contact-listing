@@ -107,7 +107,7 @@ abstract class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Jo
 			$settings[ $args[ 'key' ] ][1][] = array(
 				'name'    => sprintf( '%s_form_%s', $args[ 'option' ], $key ),
 				'std'     => null,
-				'label'   => sprintf( __( '%s %s Form', 'wp-job-manager-contact-listing' ), $p_type_obj->labels->name, ucfirst( $key ) ),
+				'label'   => sprintf( __( '%s a %s Form', 'wp-job-manager-contact-listing' ), ucfirst( $key ), $p_type_obj->labels->singular_name ),
 				'desc'    => '',
 				'type'    => 'select',
 				'options' => $this->get_forms()
@@ -128,7 +128,7 @@ abstract class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Jo
 		$plugin = parent::$active_plugin;
 		$post   = get_post();
 
-		$form = $this->forms[ $post->post_type ];
+		$form = $this->forms[ $post->post_type ][ 'contact' ];
 
 		do_action( 'job_manager_contact_listing_form_' . $plugin, $form );
 	}

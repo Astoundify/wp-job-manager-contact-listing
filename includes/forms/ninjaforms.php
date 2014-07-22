@@ -51,7 +51,7 @@ class Astoundify_Job_Manager_Contact_Listing_Form_NinjaForms extends Astoundify_
 	 *
 	 * @return string The email to notify.
 	 */
-	public function notification_email() {
+	public function notification_email($one, $two, $three) {
 		global $ninja_forms_processing;
 
 		$form_id = $ninja_forms_processing->get_form_ID();
@@ -60,7 +60,7 @@ class Astoundify_Job_Manager_Contact_Listing_Form_NinjaForms extends Astoundify_
 		$fields = $ninja_forms_processing;
 
 		foreach ( $fields->data[ 'field_data' ] as $field ) {
-			if ( 'application_email' == $field[ 'data' ][ 'label' ] ) {
+			if ( 'Listing ID' == $field[ 'data' ][ 'label' ] ) {
 				$field_id = $field[ 'id' ];
 
 				break;

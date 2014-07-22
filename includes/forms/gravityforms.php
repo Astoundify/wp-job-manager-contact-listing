@@ -45,6 +45,10 @@ class Astoundify_Job_Manager_Contact_Listing_Form_GravityForms extends Astoundif
 	 * @return string The email to notify.
 	 */
 	public function notification_email( $notification, $form, $entry ) {
+		if ( 'no-reply@listingowner.com' != $notification[ 'to' ] ) {
+			return $notification;
+		}
+
 		$notification[ 'toType' ] = 'email';
 
 		$listing = false;
