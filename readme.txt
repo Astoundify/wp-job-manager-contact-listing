@@ -7,7 +7,7 @@ Contributors: spencerfinnell
 Tags: job, job listing, job apply, gravity forms, wp job manager, gravity forms, gravityforms, ninja forms, ninjaforms, contact form 7, cf7
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable Tag: 1.0.0
+Stable Tag: 1.0.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -79,6 +79,10 @@ If you have purchased Jobify and still have questions, please post on our dedica
 
 == Changelog ==
 
-= 1.0.0: May 31, 2013 =
+= 1.0.1: July 24, 2014 =
+
+* Fix: Update for compatibility with older PHP versions to avoid errors.
+
+= 1.0.0: July 23, 2014 =
 
 * First official release!
