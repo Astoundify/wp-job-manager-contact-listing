@@ -51,10 +51,11 @@ class Astoundify_Job_Manager_Contact_Listing_Form_CF7 extends Astoundify_Job_Man
 	 *
 	 * @return string The email to notify.
 	 */
-	public function notification_email( $components, $cf7, $three ) {
-		$unit = $cf7->posted_data[ '_wpcf7_unit_tag' ];
+	public function notification_email( $components, $cf7, $three = null ) {
+		$submission = WPCF7_Submission::get_instance();
+		$unit_tag = $submission->get_meta( 'unit_tag' );
 
-		if ( ! preg_match( '/^wpcf7-f(\d+)-p(\d+)-o(\d+)$/', $unit, $matches ) )
+		if ( ! preg_match( '/^wpcf7-f(\d+)-p(\d+)-o(\d+)$/', $unit_tag, $matches ) )
 			return $components;
 
 		$post_id = (int) $matches[2];
