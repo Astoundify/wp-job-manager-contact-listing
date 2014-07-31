@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: WP Job Manager - Contact Listing
- * Plugin URI:  https://github.com/Astoundify/wp-job-manager-apply-with-forms/
+ * Plugin URI:  http://wordpress.org/plugins/wp-job-manager-contact-listing/
  * Description: Contact job listings or resume listings with your choice of Gravity Forms, Ninja Forms, or Contact Form 7
  * Author:      Astoundify
  * Author URI:  http://astoundify.com
