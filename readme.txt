@@ -33,18 +33,16 @@ The plugin can also be used on any theme but no extra styling (outside the CSS t
 
 = What settings do I need for Gravity Forms? =
 
-**Video Tutorial:** https://vimeo.com/85469722
+**Video Tutorial:** https://vimeo.com/85469722/
 
 You **must** create a *hidden* field with the following specific settings:
 
-* **Label:** Application Email
-* **Allow field to be dynamically populated:** `application_email`
-
-[View an image of the settings](https://i.cloudup.com/XfRsp5B1VH.png)
+* **Label:** Listing ID
+* **Allow field to be dynamically populated:** `{entry_id}`
 
 The Job/Resume listing must also have an email address associated with it, not a URL to a website.
 
-**Next**, create a new form notification with the "Send To" field set to "Email" and "dummy@dummy.com" as the value.
+**Next**, create a new form notification with the "Send To" field set to "Email" and "no-reply@listingowner.com" as the value.
 
 = What settings do I need for Ninja Forms? =
 
@@ -52,10 +50,8 @@ The Job/Resume listing must also have an email address associated with it, not a
 
 You **must** create a *hidden* field with the following specific settings:
 
-* **Label:** `application_email`
-* **Default Value:** `Post/Page ID`
-
-[View an image of the settings](https://i.cloudup.com/pnfVzYBFiN.png)
+* **Label:** `Listing ID`
+* **Default Value:** `Post/Page ID (if available)`
 
 The Job/Resume listing must also have an email address associated with it, not a URL to a website.
 
