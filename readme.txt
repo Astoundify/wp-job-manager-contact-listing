@@ -7,7 +7,7 @@ Contributors: spencerfinnell
 Tags: job, job listing, job apply, gravity forms, wp job manager, gravity forms, gravityforms, ninja forms, ninjaforms, contact form 7, cf7
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable Tag: 1.0.1
+Stable Tag: 1.0.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -74,6 +74,11 @@ If you have purchased Jobify and still have questions, please post on our dedica
 3. Visit the FAQ for specifics on each form plugin.
 
 == Changelog ==
+
+= 1.0.2: August 5, 2014 =
+
+* Fix: Make sure the correct instance of Contact Form 7 submission form is always found.
+* Fix: Update README to reflect new field settings.
 
 = 1.0.1: July 24, 2014 =
 
