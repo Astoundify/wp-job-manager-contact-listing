@@ -31,7 +31,7 @@ class Astoundify_Job_Manager_Contact_Listing_Form_GravityForms extends Astoundif
 	 *
 	 * @return void
 	 */
-	public function output_form( $form = 0 ) {
+	public function output_form($form) {
 		$args = apply_filters( 'job_manager_contact_listing_gravityforms_apply_form_args', 'title="false" description="false" ajax="true"' );
 
 		echo do_shortcode( sprintf( '[gravityform id="%s" %s]', $form, $args ) );

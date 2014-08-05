@@ -19,7 +19,7 @@ abstract class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Jo
 	 */
 	abstract protected function setup_actions();
 	abstract protected function get_forms();
-	abstract protected function output_form( $form );
+	abstract protected function output_form($form);
 	abstract protected function notification_email($arg1, $arg2, $arg3);
 
 	/**

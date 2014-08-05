@@ -38,7 +38,7 @@ class Astoundify_Job_Manager_Contact_Listing_Form_NinjaForms extends Astoundify_
 	 *
 	 * @return void
 	 */
-	public function output_form( $form = 0 ) {
+	public function output_form($form) {
 		$args = apply_filters( 'job_manager_contact_listing_ninjaforms_apply_form_args', '' );
 
 		echo do_shortcode( sprintf( '[ninja_forms_display_form id="%s" %s]', $form, $args ) );
