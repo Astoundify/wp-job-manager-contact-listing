@@ -28,7 +28,7 @@ class Astoundify_Job_Manager_Contact_Listing_Form_NinjaForms extends Astoundify_
 	 */
 	public function setup_actions() {
 		add_action( 'job_manager_contact_listing_form_ninjaforms', array( $this, 'output_form' ) );
-		add_action( 'ninja_forms_email_admin', array( $this, 'notification_email' ) );
+		add_action( 'ninja_forms_email_admin', array( $this, 'notification_email' ), 10, 3 );
 	}
 
 	/**
