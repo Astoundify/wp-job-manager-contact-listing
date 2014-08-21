@@ -7,20 +7,12 @@
  *
  * @return void
  */
-abstract class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Job_Manager_Contact_Listing {
+class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Job_Manager_Contact_Listing {
 
 	/**
 	 * @var $jobs_form_id
 	 */
 	public $forms;
-
-	/**
-	 * Form-specific methods
-	 */
-	abstract protected function setup_actions();
-	abstract protected function get_forms();
-	abstract protected function output_form($form);
-	abstract protected function notification_email($arg1, $arg2, $arg3);
 
 	/**
 	 * Set the form values, remove the default application template
