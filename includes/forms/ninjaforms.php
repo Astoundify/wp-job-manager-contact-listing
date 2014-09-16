@@ -28,7 +28,7 @@ class Astoundify_Job_Manager_Contact_Listing_Form_NinjaForms extends Astoundify_
 	 */
 	public function setup_actions() {
 		add_action( 'job_manager_contact_listing_form_ninjaforms', array( $this, 'output_form' ) );
-		add_action( 'ninja_forms_email_admin', array( $this, 'notification_email' ), 10, 3 );
+		add_filter( 'nf_email_notification_process_setting', array( $this, 'notification_email' ), 10, 3 );
 	}
 
 	/**
@@ -51,7 +51,17 @@ class Astoundify_Job_Manager_Contact_Listing_Form_NinjaForms extends Astoundify_
 	 *
 	 * @return string The email to notify.
 	 */
-	public function notification_email($one = null, $two = null, $three = null) {
+	public function notification_email( $setting, $setting_name, $id ) {
+		if ( 'to' != $setting_name ) {
+			return;
+		}
+
+		$fake = array_search( 'no-reply@listingowner.com', $setting );
+
+		if ( false === $fake ) {
+			return;
+		}
+
 		global $ninja_forms_processing;
 
 		$form_id = $ninja_forms_processing->get_form_ID();
@@ -69,30 +79,15 @@ class Astoundify_Job_Manager_Contact_Listing_Form_NinjaForms extends Astoundify_
 
 		$object = get_post( $ninja_forms_processing->get_field_value( $field_id ) );
 
+		if ( ! is_a( $object, 'WP_Post' ) ) {
+			return;
+		}
+
 		if ( ! array_search( $form_id, $this->forms[ $object->post_type ] ) ) {
 			return;
 		}
 
-		$this->_proper_ninja_email = $object->_application ? $object->_application : $object->_candidate_email;
-
-		add_filter( 'wp_mail', array( $this, 'proper_email' ) );
-	}
-
-	/**
-	 * @missing
-	 *
-	 * @since WP Job Manager - Contact Listing 1.0.0
-	 *
-	 * @return $mail
-	 */
-	public function proper_email( $mail ) {
-		if ( filter_var( $this->_proper_ninja_email, FILTER_VALIDATE_EMAIL ) ) {
-			$mail[ 'to' ] = $this->_proper_ninja_email;
-		}
-
-		remove_filter( 'wp_mail', array( $this, 'proper_email' ) );
-
-		return $mail;
+		return $object->_application ? $object->_application : $object->_candidate_email;
 	}
 
 	/**
