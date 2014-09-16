@@ -7,7 +7,7 @@ Contributors: spencerfinnell
 Tags: job, job listing, job apply, gravity forms, wp job manager, gravity forms, gravityforms, ninja forms, ninjaforms, contact form 7, cf7
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable Tag: 1.0.3.1
+Stable Tag: 1.0.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -42,7 +42,7 @@ You **must** create a *hidden* field with the following specific settings:
 
 The Job/Resume listing must also have an email address associated with it, not a URL to a website.
 
-**Next**, create a new form notification with the "Send To" field set to "Email" and "no-reply@listingowner.com" as the value.
+**Next**, create a new form notification with the "Send To" field set to "Email" and "no-reply@listingowner.com" as the value. Fill the body with the information you want to send to the listing owner.
 
 = What settings do I need for Ninja Forms? =
 
@@ -55,7 +55,7 @@ You **must** create a *hidden* field with the following specific settings:
 
 The Job/Resume listing must also have an email address associated with it, not a URL to a website.
 
-In "Administrator Email Settings" add a *dummy* email address as the first email to send a notification to. You can add real email addresses under this if you do need an actual admin confirmation.
+**Next**, create a new form *email* notification with the "To" field set to "no-reply@listingowner.com". Fill the body with the information you want to send to the listing owner.
 
 = What settings do I need for Contact Form 7? =
 
@@ -74,6 +74,10 @@ If you have purchased Jobify and still have questions, please post on our dedica
 3. Visit the FAQ for specifics on each form plugin.
 
 == Changelog ==
+
+= 1.0.4: September 16, 2014 =
+
+* Fix: Compatibility with Ninja Forms 2.8.0+ notification system. Please review the README and documentation for changes needed.
 
 = 1.0.3.1: August 12, 2014 =
 
