@@ -53,13 +53,13 @@ class Astoundify_Job_Manager_Contact_Listing_Form_NinjaForms extends Astoundify_
 	 */
 	public function notification_email( $setting, $setting_name, $id ) {
 		if ( 'to' != $setting_name ) {
-			return;
+			return $setting;
 		}
 
 		$fake = array_search( 'no-reply@listingowner.com', $setting );
 
 		if ( false === $fake ) {
-			return;
+			return $setting;
 		}
 
 		global $ninja_forms_processing;
@@ -80,14 +80,16 @@ class Astoundify_Job_Manager_Contact_Listing_Form_NinjaForms extends Astoundify_
 		$object = get_post( $ninja_forms_processing->get_field_value( $field_id ) );
 
 		if ( ! is_a( $object, 'WP_Post' ) ) {
-			return;
+			return $setting;
 		}
 
 		if ( ! array_search( $form_id, $this->forms[ $object->post_type ] ) ) {
-			return;
+			return $setting;
 		}
 
-		return $object->_application ? $object->_application : $object->_candidate_email;
+		$setting[ $fake ] = $object->_application ? $object->_application : $object->_candidate_email;
+
+		return $setting;
 	}
 
 	/**
