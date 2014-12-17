@@ -5,7 +5,7 @@ Plugin URI: https://wordpress.org/plugins/wp-job-manager-contact-listing/
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=contact@appthemer.com&item_name=Donation+for+Astoundify WP Job Manager Contact Listing
 Contributors: Astoundify, SpencerFinnell
 Tags: job, job listing, job apply, gravity forms, wp job manager, gravity forms, gravityforms, ninja forms, ninjaforms, contact form 7, cf7
-Requires at least: 4.1
+Requires at least: 3.6
 Tested up to: 4.1
 Stable Tag: 1.0.4
 License: GPLv3
