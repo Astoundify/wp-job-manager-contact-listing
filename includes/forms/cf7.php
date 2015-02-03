@@ -61,7 +61,12 @@ class Astoundify_Job_Manager_Contact_Listing_Form_CF7 extends Astoundify_Job_Man
 		$post_id = (int) $matches[2];
 		$object = get_post( $post_id );
 
-		if ( ! array_search( $cf7->id, $this->forms[ $object->post_type ] ) ) {
+		// Prevent issues when the form is not submitted via a listing/resume page
+		if ( ! isset( $this->forms[ $object->post_type ] ) ) {
+			return $components;
+		}
+
+		if ( ! array_search( $cf7->id(), $this->forms[ $object->post_type ] ) ) {
 			return $components;
 		}
 
