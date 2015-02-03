@@ -70,6 +70,11 @@ class Astoundify_Job_Manager_Contact_Listing_Form_CF7 extends Astoundify_Job_Man
 			return $components;
 		}
 
+		// Bail if this is the second mail
+		if ( isset( $three ) && 'mail_2' == $three->name() ) {
+			return $components;
+		}
+
 		$recipient = $object->_application ? $object->_application : $object->_candidate_email;
 
 		$components[ 'recipient' ] = $recipient;
