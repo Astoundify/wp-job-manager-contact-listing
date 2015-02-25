@@ -23,6 +23,10 @@ class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Job_Manager
 	 * @return void
 	 */
 	public function __construct() {
+		if ( ! class_exists( 'WP_Job_Manager' ) ) {
+			return;
+		}
+
 		global $job_manager;
 
 		$this->forms = apply_filters( 'job_manager_contact_listing_forms', array(
