@@ -3,10 +3,10 @@
 Author URI: http://astoundify.com
 Plugin URI: https://wordpress.org/plugins/wp-job-manager-contact-listing/
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=contact@appthemer.com&item_name=Donation+for+Astoundify WP Job Manager Contact Listing
-Contributors: spencerfinnell
+Contributors: Astoundify, SpencerFinnell
 Tags: job, job listing, job apply, gravity forms, wp job manager, gravity forms, gravityforms, ninja forms, ninjaforms, contact form 7, cf7
 Requires at least: 3.5
-Tested up to: 4.0.0
+Tested up to: 4.1.1
 Stable Tag: 1.0.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -25,7 +25,7 @@ Sites using the [WP Job Manager](http://wordpress.org/plugins/wp-job-manager/) p
 
 = Where can I use this? =
 
-Astoundify has released the first fully integrated WP Job Manager theme. Check out ["Jobify"](http://themeforest.net/item/jobify-job-board-wordpress-theme/5247604?ref=Astoundify)
+Astoundify has released two themes that are fully integrated with the WP Job Manager plugin. Check out ["Jobify"](http://themeforest.net/item/jobify-job-board-wordpress-theme/5247604?ref=Astoundify) and our WordPress Directory theme ["Listify"](http://themeforest.net/item/listify-wordpress-directory-theme/9602611?ref=Astoundify)
 
 The plugin can also be used on any theme but no extra styling (outside the CSS that comes with the form plugins) is used.
 

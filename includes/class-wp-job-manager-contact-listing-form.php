@@ -48,10 +48,10 @@ class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Job_Manager
 		$this->setup_actions();
 
 		// Output the shortcode
-		remove_action( 'job_manager_application_details_email', array( $job_manager->post_types, 'application_details_email' ) );
+
 
 		if ( ! get_option( 'resume_manager_force_application' ) ) {
-			add_action( 'job_manager_application_details_email', array( $this, 'job_manager_application_details_email' ) );
+			add_action( 'job_manager_application_details_email', array( $this, 'job_manager_application_details_email' ), 5 );
 		}
 
 		if ( class_exists( 'WP_Resume_Manager' ) ) {
@@ -128,6 +128,8 @@ class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Job_Manager
 	 * @return void
 	 */
 	public function job_manager_application_details_email( $apply ) {
+		global $job_manager;
+
 		$plugin = parent::$active_plugin;
 		$post   = get_post();
 
@@ -141,6 +143,10 @@ class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Job_Manager
 			return;
 		}
 
+		// Only remove the default text when contact form is set.
+		remove_action( 'job_manager_application_details_email', array( $job_manager->post_types, 'application_details_email' ) );
+
+		// Add contact form content
 		do_action( 'job_manager_contact_listing_form_' . $plugin, $form );
 	}
 
