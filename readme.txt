@@ -7,7 +7,7 @@ Contributors: Astoundify
 Tags: job, job listing, job apply, gravity forms, wp job manager, gravity forms, gravityforms, ninja forms, ninjaforms, contact form 7, cf7
 Requires at least: 4.1
 Tested up to: 4.1.1
-Stable Tag: 1.0.4
+Stable Tag: 1.0.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -74,6 +74,10 @@ If you have purchased Jobify and still have questions, please post on our dedica
 3. Visit the FAQ for specifics on each form plugin.
 
 == Changelog ==
+
+= 1.0.5: April, 9, 2015 =
+
+* Fix: Don't override Contact Form 7 Mail (2) email notification.
 
 = 1.0.4: September 16, 2014 =
 
