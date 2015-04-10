@@ -62,6 +62,10 @@ class Astoundify_Job_Manager_Contact_Listing_Form_GravityForms extends Astoundif
 
 		$object = get_post( $listing );
 
+		if ( ! isset( $this->forms[ $object->post_type ] ) ) {
+			return;
+		}
+
 		if ( ! array_search( $form[ 'id' ], $this->forms[ $object->post_type ] ) ) {
 			return;
 		}
