@@ -2,11 +2,11 @@
 
 Author URI: http://astoundify.com
 Plugin URI: https://wordpress.org/plugins/wp-job-manager-contact-listing/
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=contact@appthemer.com&item_name=Donation+for+Astoundify WP Job Manager Contact Listing
+Donate link: https://www.paypal.me/astoundify
 Contributors: Astoundify
 Tags: job, job listing, job apply, gravity forms, wp job manager, gravity forms, gravityforms, ninja forms, ninjaforms, contact form 7, cf7
-Requires at least: 4.1
-Tested up to: 4.4
+Requires at least: 4.4 
+Tested up to: 4.4.*
 Stable Tag: 1.0.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
