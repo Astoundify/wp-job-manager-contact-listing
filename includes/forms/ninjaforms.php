@@ -77,7 +77,9 @@ class Astoundify_Job_Manager_Contact_Listing_Form_NinjaForms extends Astoundify_
 			}
 		}
 
-		$object = get_post( $ninja_forms_processing->get_field_value( $field_id ) );
+		$listing_ID = $ninja_forms_processing->get_field_value( $field_id );
+
+		$object = get_post( $listing_ID );
 
 		if ( ! is_a( $object, 'WP_Post' ) ) {
 			return $setting;
@@ -88,6 +90,20 @@ class Astoundify_Job_Manager_Contact_Listing_Form_NinjaForms extends Astoundify_
 		}
 
 		$setting[ $fake ] = $object->_application ? $object->_application : $object->_candidate_email;
+
+		//if we couldn't find the email by now, get it from the listing owner/author
+		if ( empty( $setting[ $fake ] ) ) {
+
+			//just get the email of the listing author
+			$owner_ID = $object->post_author;
+
+			//retrieve the owner user data to get the email
+			$owner_info = get_userdata( $owner_ID );
+
+			if ( false !== $owner_info ) {
+				$setting[ $fake ] = $owner_info->user_email;
+			}
+		}
 
 		return $setting;
 	}

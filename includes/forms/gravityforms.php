@@ -51,16 +51,18 @@ class Astoundify_Job_Manager_Contact_Listing_Form_GravityForms extends Astoundif
 
 		$notification[ 'toType' ] = 'email';
 
-		$listing = false;
+		$listing_ID = false;
 		$fields  = $form[ 'fields' ];
 
 		foreach ( $fields as $check ) {
-			if ( $check[ 'inputName' ] == 'Listing ID' ) {
-				$listing = $check[ 'id' ];
+			if ( $check[ 'label' ] == 'Listing ID' ) {
+				if ( isset( $entry[ $check[ 'id' ] ] ) ) {
+					$listing_ID = $entry[ $check['id'] ];
+				}
 			}
 		}
 
-		$object = get_post( $listing );
+		$object = get_post( $listing_ID );
 
 		if ( ! isset( $this->forms[ $object->post_type ] ) ) {
 			return;
@@ -71,6 +73,20 @@ class Astoundify_Job_Manager_Contact_Listing_Form_GravityForms extends Astoundif
 		}
 
 		$to = $object->_application ? $object->_application : $object->_candidate_email;
+
+		//if we couldn't find the email by now, get it from the listing owner/author
+		if ( empty( $to ) ) {
+
+			//just get the email of the listing author
+			$owner_ID = $object->post_author;
+
+			//retrieve the owner user data to get the email
+			$owner_info = get_userdata( $owner_ID );
+
+			if ( false !== $owner_info ) {
+				$to = $owner_info->user_email;
+			}
+		}
 
 		$notification[ 'to' ] = $to;
 

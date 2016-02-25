@@ -38,7 +38,7 @@ The plugin can also be used on any theme but no extra styling (outside the CSS t
 You **must** create a *hidden* field with the following specific settings:
 
 * **Label:** Listing ID
-* **Allow field to be dynamically populated:** `{entry_id}`
+* **Allow field to be dynamically populated:** `{embed_post:ID}`
 
 The Job/Resume listing must also have an email address associated with it, not a URL to a website.
 

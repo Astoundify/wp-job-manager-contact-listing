@@ -77,6 +77,20 @@ class Astoundify_Job_Manager_Contact_Listing_Form_CF7 extends Astoundify_Job_Man
 
 		$recipient = $object->_application ? $object->_application : $object->_candidate_email;
 
+		//if we couldn't find the email by now, get it from the listing owner/author
+		if ( empty( $recipient ) ) {
+
+			//just get the email of the listing author
+			$owner_ID = $object->post_author;
+
+			//retrieve the owner user data to get the email
+			$owner_info = get_userdata( $owner_ID );
+
+			if ( false !== $owner_info ) {
+				$recipient = $owner_info->user_email;
+			}
+		}
+
 		$components[ 'recipient' ] = $recipient;
 
 		return $components;
