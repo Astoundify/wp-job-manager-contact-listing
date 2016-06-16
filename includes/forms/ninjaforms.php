@@ -117,11 +117,11 @@ class Astoundify_Job_Manager_Contact_Listing_Form_NinjaForms extends Astoundify_
 	 */
 	public function get_forms() {
 		$forms  = array( 0 => __( 'Please select a form', 'wp-job-manager-contact-listing' ) );
+		$_forms = array();
 
-		if ( class_exists('Ninja_Forms') {
+		if ( class_exists( 'Ninja_Forms' ) ) {
 			$_forms = Ninja_Forms()->forms->get_all();
-		}
-		elseif ( function_exists('ninja_forms_get_all_forms') ) {
+		} elseif ( function_exists( 'ninja_forms_get_all_forms' ) ) {
 			$_forms = ninja_forms_get_all_forms();
 		}
 
