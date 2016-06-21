@@ -5,8 +5,9 @@
  * Description: Contact job listings or resume listings with your choice of Gravity Forms, Ninja Forms, or Contact Form 7
  * Author:      Astoundify
  * Author URI:  http://astoundify.com
- * Version:     1.2.0
+ * Version:     1.2.1
  * Text Domain: wp-job-manager-contact-listing
+ * Domain Path: /languages
  */
 
 // Exit if accessed directly
