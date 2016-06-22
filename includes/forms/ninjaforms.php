@@ -126,18 +126,24 @@ class Astoundify_Job_Manager_Contact_Listing_Form_NinjaForms extends Astoundify_
 			foreach ( $f as $form_id ) {
 				$_forms[] = array(
 					'id' => $form_id,
-					'data' => Ninja_Forms()->form( $form_id )->get_all_settings(),
-					'name' => Ninja_Forms()->form( $form_id )->get_setting( 'form_title' )
+					'title' => Ninja_Forms()->form( $form_id )->get_setting( 'form_title' )
 				);
 			}
 		} else {
-			$_forms = Ninja_Forms()->form()->get_forms();
+			$f = Ninja_Forms()->form()->get_forms();
+
+			foreach ( $f as $form ) {
+				$_forms[] = array(
+					'id' => $form->get_id(),
+					'title' => $form->get_setting( 'title' )
+				);
+			}
 		}
 
 		if ( ! empty( $_forms ) ) {
 
 			foreach ( $_forms as $_form ) {
-				$forms[ $_form['id'] ] = $_form['data']['form_title'];
+				$forms[ $_form[ 'id' ] ] = $_form[ 'title' ];
 			}
 
 		}
