@@ -6,7 +6,7 @@ Donate link: https://www.paypal.me/astoundify
 Contributors: Astoundify
 Tags: job, job listing, job apply, gravity forms, wp job manager, gravity forms, gravityforms, ninja forms, ninjaforms, contact form 7, cf7
 Requires at least: 4.4 
-Tested up to: 4.5.*
+Tested up to: 4.6
 Stable Tag: 1.2.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
