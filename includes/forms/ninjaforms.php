@@ -41,7 +41,11 @@ class Astoundify_Job_Manager_Contact_Listing_Form_NinjaForms extends Astoundify_
 	public function output_form($form) {
 		$args = apply_filters( 'job_manager_contact_listing_ninjaforms_apply_form_args', '' );
 
-		echo do_shortcode( sprintf( '[ninja_forms_display_form id="%s" %s]', $form, $args ) );
+		if ( version_compare( get_option( 'ninja_forms_version', '0.0.0' ), '3', '<' ) ) {
+			echo do_shortcode( sprintf( '[ninja_forms_display_form id="%s" %s]', $form, $args ) );
+		} else {
+			echo do_shortcode( sprintf( '[ninja_forms id="%s" %s]', $form, $args ) );
+		}
 	}
 
 	/**
