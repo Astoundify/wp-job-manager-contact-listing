@@ -9,6 +9,12 @@
 class Astoundify_Job_Manager_Contact_Listing_Form_NinjaForms extends Astoundify_Job_Manager_Contact_Listing_Form {
 
 	/**
+	 * Pre THREE release.
+	 * @access protected
+	 */
+	public $is_pre_three;
+
+	/**
 	 * Load the base form class.
 	 *
 	 * @since WP Job Manager - Contact Listing 1.0.0
@@ -16,6 +22,8 @@ class Astoundify_Job_Manager_Contact_Listing_Form_NinjaForms extends Astoundify_
 	 * @return void
 	 */
 	public function __construct() {
+		$this->is_pre_three = version_compare( get_option( 'ninja_forms_version', '0.0.0' ), '3', '<' ) || get_option( 'ninja_forms_load_deprecated', false );
+
 		parent::__construct();
 	}
 
@@ -41,7 +49,7 @@ class Astoundify_Job_Manager_Contact_Listing_Form_NinjaForms extends Astoundify_
 	public function output_form($form) {
 		$args = apply_filters( 'job_manager_contact_listing_ninjaforms_apply_form_args', '' );
 
-		if ( version_compare( get_option( 'ninja_forms_version', '0.0.0' ), '3', '<' ) ) {
+		if ( $this->is_pre_three ) {
 			echo do_shortcode( sprintf( '[ninja_forms_display_form id="%s" %s]', $form, $args ) );
 		} else {
 			echo do_shortcode( sprintf( '[ninja_forms id="%s" %s]', $form, $args ) );
@@ -123,7 +131,7 @@ class Astoundify_Job_Manager_Contact_Listing_Form_NinjaForms extends Astoundify_
 		$forms  = array( 0 => __( 'Please select a form', 'wp-job-manager-contact-listing' ) );
 		$_forms = array();
 
-		if ( version_compare( get_option( 'ninja_forms_version', '0.0.0' ), '3', '<' ) ) {
+		if ( $this->is_pre_three ) {
 			$f = Ninja_Forms()->forms()->get_all();
 			$x = 0;
 
