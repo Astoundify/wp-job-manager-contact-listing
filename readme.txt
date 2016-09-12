@@ -7,7 +7,7 @@ Contributors: Astoundify
 Tags: job, job listing, job apply, gravity forms, wp job manager, gravity forms, gravityforms, ninja forms, ninjaforms, contact form 7, cf7
 Requires at least: 4.4 
 Tested up to: 4.6
-Stable Tag: 1.2.2
+Stable Tag: 1.2.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -74,6 +74,10 @@ If you have purchased Jobify and still have questions, please post on our dedica
 3. Visit the FAQ for specifics on each form plugin.
 
 == Changelog ==
+
+= 1.2.3: September 12, 2016 = 
+
+* Ninja Forms compatibility.
 
 = 1.2.2: June 22, 2016 = 
 
