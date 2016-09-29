@@ -37,6 +37,10 @@ class Astoundify_Job_Manager_Contact_Listing_Form_NinjaForms extends Astoundify_
 	public function setup_actions() {
 		add_action( 'job_manager_contact_listing_form_ninjaforms', array( $this, 'output_form' ) );
 		add_filter( 'nf_email_notification_process_setting', array( $this, 'notification_email' ), 10, 3 );
+
+		if ( ! $this->is_pre_three ) {
+			Ninja_forms()->merge_tags[ 'wp-job-manager' ] = new Astoundify_NF_MergeTags_WPJobManager();
+		}
 	}
 
 	/**
@@ -164,3 +168,51 @@ class Astoundify_Job_Manager_Contact_Listing_Form_NinjaForms extends Astoundify_
 	}
 
 }
+
+if ( class_exists( 'NF_Abstracts_MergeTags' ) ) :
+/**
+ * Custom merge tag for Ninja Forms THREE.
+ *
+ * Simply create a hidden field with {contact-email} tag and use
+ * the value of that field to send the email to.
+ *
+ * @since 1.3.0
+ */
+class Astoundify_NF_MergeTags_WPJobManager extends NF_Abstracts_MergeTags {
+
+    protected $id = 'wp-job-manager';
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->title = __( 'WP Job Manager', 'wp-job-manager-contact-listing' );
+
+		$this->merge_tags = array(
+			'email' => array(
+				'id' => 'email',
+				'tag' => '{contact-email}',
+				'label' => __( 'Contact Email', 'wp-job-manager-contact-listing' ),
+				'callback' => 'contact_email'
+			)
+		);
+    }
+
+    protected function contact_email() {
+		$post = get_post();
+
+		// try the wp job manager fields
+		$contact = $post->_application ? $post->_application : $post->_candidate_email;
+
+		// use listing owner data
+		if ( ! $contact ) {
+			$owner_info = get_userdata( $post->post_author );
+
+			if ( false !== $owner_info ) {
+				$contact = $owner_info->user_email;
+			}
+		}
+
+        return $contact;
+    }
+}
+endif;
