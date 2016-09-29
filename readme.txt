@@ -7,7 +7,7 @@ Contributors: Astoundify
 Tags: job, job listing, job apply, gravity forms, wp job manager, gravity forms, gravityforms, ninja forms, ninjaforms, contact form 7, cf7
 Requires at least: 4.4 
 Tested up to: 4.6
-Stable Tag: 1.2.3
+Stable Tag: 1.3.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -50,12 +50,12 @@ The Job/Resume listing must also have an email address associated with it, not a
 
 You **must** create a *hidden* field with the following specific settings:
 
-* **Label:** `Listing ID`
-* **Default Value:** `Post/Page ID (if available)`
+* **Label:** `Contact Email`
+* **Default Value:** `{contact-email}`
 
 The Job/Resume listing must also have an email address associated with it, not a URL to a website.
 
-**Next**, create a new form *email* notification with the "To" field set to "no-reply@listingowner.com". Fill the body with the information you want to send to the listing owner.
+**Next**, create a new form *email* notification with the "To" field set to the value of the **Contact Email** hidden field you created. Fill the body with the information you want to send to the listing owner.
 
 = What settings do I need for Contact Form 7? =
 
@@ -74,6 +74,12 @@ If you have purchased Jobify and still have questions, please post on our dedica
 3. Visit the FAQ for specifics on each form plugin.
 
 == Changelog ==
+
+= 1.3.0: September 29, 2016 =
+
+* New: Ninja Forms THREE merge tag for routing emails to the listing or candidate email address. Update your existing hidden field with the merge tag {contact-email} and update your "To" email notification field to be the value of your hidden field.
+
+See: http://docs.astoundify.com/article/81-ninja-form 
 
 = 1.2.3: September 12, 2016 = 
 
