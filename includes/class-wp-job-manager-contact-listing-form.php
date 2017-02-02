@@ -106,6 +106,11 @@ class Astoundify_Job_Manager_Contact_Listing_Form extends Astoundify_Job_Manager
 
 		$p_type_obj = get_post_type_object( $post_type );
 
+		/* Bail. */
+		if( ! $p_type_obj ){
+			return $settings;
+		}
+
 		foreach ( $forms as $key => $value ) {
 			$settings[ $args[ 'key' ] ][1][] = array(
 				'name'    => sprintf( '%s_form_%s', $args[ 'option' ], $key ),

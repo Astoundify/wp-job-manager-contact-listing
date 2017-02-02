@@ -132,6 +132,9 @@ class Astoundify_Job_Manager_Contact_Listing_Form_NinjaForms extends Astoundify_
 	 * @return void
 	 */
 	public function get_forms() {
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ){
+			return;
+		}
 		$forms  = array( 0 => __( 'Please select a form', 'wp-job-manager-contact-listing' ) );
 		$_forms = array();
 
