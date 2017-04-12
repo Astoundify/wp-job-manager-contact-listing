@@ -1,11 +1,11 @@
 <?php
 /**
- * Plugin Name: WP Job Manager - Contact Listing
+ * Plugin Name: Contact Listing for WP Job Manager
  * Plugin URI:  http://wordpress.org/plugins/wp-job-manager-contact-listing/
  * Description: Contact job listings or resume listings with your choice of Gravity Forms, Ninja Forms, or Contact Form 7
  * Author:      Astoundify
  * Author URI:  http://astoundify.com
- * Version:     1.3.0
+ * Version:     1.4.0
  * Text Domain: wp-job-manager-contact-listing
  * Domain Path: /languages
  */

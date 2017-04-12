@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/astoundify/wp-job-manager-contact-listing#readme",
   "devDependencies": {
-    "grunt-wp-i18n": "^0.5.4",
+    "grunt-wp-i18n": "^1.0.0",
     "grunt-checktextdomain": "^1.0.1"
   }
 }
