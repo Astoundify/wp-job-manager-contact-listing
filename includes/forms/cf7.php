@@ -41,6 +41,10 @@ class Astoundify_Job_Manager_Contact_Listing_Form_CF7 extends Astoundify_Job_Man
 	public function output_form($form) {
 		$args = apply_filters( 'job_manager_contact_listing_cf7_apply_form_args', '' );
 
+		if ( function_exists( 'pll_get_posts' ) ) {
+			$form = pll_get_post( $form );
+		}
+
 		echo do_shortcode( sprintf( '[contact-form-7 id="%s" %s]', $form, $args ) );
 	}
 
