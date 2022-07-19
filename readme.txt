@@ -1,5 +1,4 @@
 === Contact Listing for WP Job Manager ===
-
 Author URI: http://astoundify.com
 Plugin URI: https://astoundify.com/products/wp-job-manager-contact-listing/
 Donate link: https://www.paypal.me/astoundify
