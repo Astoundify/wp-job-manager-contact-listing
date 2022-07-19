@@ -1,6 +1,6 @@
 {
   "name": "wp-job-manager-contact-listing",
-  "version": "1.4.1",
+  "version": "1.4.3",
   "description": "=== WP Job Manager - Contact Listing ===",
   "main": "Gruntfile.js",
   "scripts": {
