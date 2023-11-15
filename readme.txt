@@ -5,8 +5,8 @@ Donate link: https://www.paypal.me/astoundify
 Contributors: Astoundify
 Tags: job, job listing, job apply, gravity forms, wp job manager, gravity forms, gravityforms, ninja forms, ninjaforms, contact form 7, cf7
 Requires at least: 4.7.0
-Tested up to: 6.3
-Stable Tag: 1.4.4
+Tested up to: 6.4.1
+Stable Tag: 1.4.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -98,6 +98,10 @@ If you like this plugin, consider exploring our other themes and plugins:
 * [reCAPTCHA](https://wordpress.org/plugins/astoundify-recaptcha/) Google reCAPTCHA for WordPress. Currently supports: WordPress Login/Register, WooCommerce Login/Register, WP Job Manager (Submission Form), Claim Listing for WP Job Manager, Gravity Forms, Ninja Forms, Contact Form 7.
 
 == Changelog ==
+
+= 1.4.5: November 15, 2023 =
+
+* Fix: Ninja form issue.
 
 = 1.4.4: August 22, 2023 =
 
