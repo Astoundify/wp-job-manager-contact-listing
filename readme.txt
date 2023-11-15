@@ -101,7 +101,7 @@ If you like this plugin, consider exploring our other themes and plugins:
 
 = 1.4.5: November 15, 2023 =
 
-* Fix: Ninja form issue.
+* Fix: Contact job form setting issue for ninja forms.
 
 = 1.4.4: August 22, 2023 =
 
